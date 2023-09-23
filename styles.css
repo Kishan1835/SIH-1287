@@ -1,0 +1,197 @@
+/* Reset some default styles */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+/* Modern Colors */
+:root {
+    --primary-bg: #ff3377; /* Dark primary background color */
+    --primary-text: #ecf0f1; /* Light primary text color */
+    --secondary-bg: #97c2f3; /* Secondary background color */
+    --secondary-text: #fff; /* Secondary text color */
+}
+
+/* Navigation Bar Styles */
+nav {
+    background-color: var(--primary-bg); /* Use the dark primary background color */
+    color: var(--primary-text); /* Use the light primary text color */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    border-radius: 0 0 20px 20px; /* Add curved edges */
+    position: relative; /* Add position for curved edge */
+    clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%); /* Create a curved shape */
+    overflow: hidden;
+}
+nav .logo {
+    text-decoration: none;
+    color: var(--secondary-text); /* Use the secondary text color */
+    font-size: 24px;
+    padding: 10px;
+    display: block;
+    font-family: monospace;
+    font-weight: bold;
+    font-size: 35px;
+    padding:10px;
+    background-color:black
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+}
+
+nav ul li {
+    margin-right: 20px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: var(--primary-text); /* Use the light primary text color */
+    font-weight: bold;
+}
+
+/* Move night mode toggle to the right */
+.night-mode-toggle {
+    margin-left: auto;
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+    margin-right: 10px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    border-radius: 17px; /* Rounded slider background */
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: #fff;
+    border-radius: 50%; /* Rounded slider button */
+}
+
+input:checked + .slider:before {
+    transform: translateX(26px);
+}
+
+input:checked + .slider {
+    background-color: #1f78c0;
+}
+
+/* Night Mode Styles */
+body.night-mode {
+    background-color: #333;
+    color: #fff;
+}
+
+.heading{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    font-size: 50px;
+}
+
+/* Card Styles */
+.card-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    gap: 65px; /* Add gap between cards */
+    height: 460px; /* Fixed height for the card container */
+    overflow: hidden; /* Hide any overflow */
+}
+
+
+/* Card Styles */
+.card {
+    width: 300px;
+    height: 400px;
+    perspective: 1000px;
+    margin: 20px;
+    border-radius: 20px; /* Add curved edges */
+    position: relative; /* Position cards relative to the container */
+}
+
+.card-inner {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.5s;
+}
+
+.card-front, .card-back {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    backface-visibility: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+    border-radius: 20px; /* Add curved edges */
+    transition: transform 0.5s, z-index 0.5s; /* Add transitions */
+}
+
+.card-front {
+    background-color: var(--secondary-bg); /* Use the secondary background color */
+    color: var(--secondary-text); /* Use the secondary text color */
+    transform: rotateY(0);
+    z-index: 2; /* Front face starts with a higher z-index */
+}
+
+.card-back {
+    background-color: var(--primary-bg); /* Use the dark primary background color */
+    color: var(--primary-text); /* Use the light primary text color */
+    transform: rotateY(180deg);
+    z-index: 1; /* Back face starts with a lower z-index */
+}
+
+.card:hover .card-inner {
+    transform: rotateY(180deg);
+}
+
+/* Ensure the front card is on top after flip */
+.card:hover .card-front {
+    z-index: 3;
+}
+
+/* Make card 1 flip in one direction and card 2 flip in the opposite direction */
+.card.card1 .card-back {
+    transform: rotateY(-180deg);
+}
+/* Make card 2 flip in a different direction */
+.card.card2 .card-back {
+    transform: rotateY(180deg); /* Change the rotation value to 360deg for a different direction */
+}
+
